@@ -1,5 +1,6 @@
 import 'package:semana4_5/components/chart.dart';
 import 'package:semana4_5/components/transaction_list.dart';
+import 'package:semana4_5/models/edit_form.dart';
 import 'package:semana4_5/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:semana4_5/models/transaction_form.dart';
@@ -60,6 +61,24 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
+  _updateTransaction(String id, String title, double value, DateTime time){
+    _transactions.forEach((tr){
+        if(tr.id == id){
+          setState(() {
+            tr.date = time;
+            tr.title = title;
+            tr.value = value;
+          });
+        }
+    });
+  }
+
+  _openUpdateTransaction(BuildContext context, String ID){
+    showModalBottomSheet(context: context, builder: (_){
+      return EditForm(_updateTransaction, ID);
+    });
+  }
+
   _opentransactionFormModal(BuildContext context) {
     showModalBottomSheet(context: context, 
     builder: (_){
@@ -77,7 +96,7 @@ class _MainPageState extends State<MainPage> {
           Column(
             children: [
               Chart(_recentTransactions),
-              TransactionList(_transactions, _deleteTransaction)
+              TransactionList(_transactions, _deleteTransaction, _openUpdateTransaction)
             ],
           )
         ],
