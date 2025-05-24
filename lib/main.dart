@@ -13,10 +13,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Quicksand'
-    ),
       home: MainPage()
     );
   }
@@ -89,7 +85,8 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Despesas pessoais", style: TextStyle(fontFamily: 'OpenSans'),), backgroundColor: Colors.blue,),
+      backgroundColor: Colors.amber,
+      appBar: AppBar(title: Text("Despesas pessoais", style: TextStyle(fontFamily: 'OpenSans', fontWeight: FontWeight.bold),), backgroundColor: Colors.deepOrangeAccent,),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -102,7 +99,7 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.deepOrange,
         onPressed: () => _opentransactionFormModal(context),
         child: Icon(Icons.add),
       ),
